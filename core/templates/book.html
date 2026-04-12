@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card">
+<h2>📅 Book Appointment</h2>
+
+<form method="post">
+{% csrf_token %}
+
+<!-- SERVICE -->
+<label><b>Select Service</b></label>
+<select name="service" required>
+    <option value="">-- Select Service --</option>
+    {% for s in services %}
+    <option value="{{s.id}}">
+        {% if "License" in s.name %} 🚗 {% endif %}
+        {% if "Aadhaar" in s.name %} 🪪 {% endif %}
+        {% if "PAN" in s.name %} 💳 {% endif %}
+        {% if "Ration" in s.name %} 🍚 {% endif %}
+        {{s.name}}
+    </option>
+    {% endfor %}
+</select>
+
+<!-- ✅ DESCRIPTION (OUTSIDE SELECT) -->
+<label><b>Enter Reason / Description</b></label>
+<textarea name="description" placeholder="Write your problem..." rows="3"></textarea>
+
+<!-- DATE -->
+<label><b>Select Date</b></label>
+<input type="date" name="date" required>
+
+<!-- TIME -->
+<label><b>Select Time Slot</b></label>
+<input type="time" name="time" required>
+
+<button type="submit">Book Appointment</button>
+
+</form>
+</div>
+
+{% endblock %}

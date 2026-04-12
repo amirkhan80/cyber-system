@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card">
+<h2>📋 My Appointments</h2>
+
+{% for a in data %}
+<div style="border-bottom:1px solid #ddd; padding:10px 0;">
+    <b>Service:</b> {{a.service}} <br>
+    <b>Description:</b> {{a.description}} <br>
+    <b>Date:</b> {{a.date}} <br>
+    <b>Time:</b> {{a.time}} <br>
+
+    <span class="status {{a.status}}">
+        {{a.status}}
+    </span>
+</div>
+{% empty %}
+<p>No appointments yet</p>
+{% endfor %}
+
+</div>
+
+{% endblock %}
